@@ -4,8 +4,46 @@ import React from "react";
 import Image from "next/image";
 import Money from "../images/Microsoft-Fluentui-Emoji-3d-Money-Mouth-Face-3d.512.png";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function MoneySharepage() {
+  const [money, setMoney] = useState("");
+  const [people, setPeople] = useState("");
+  const [moneyShare, setMoneyShare] = useState("");
+
+  // const calculateShare = () => {
+  //   const moneyNum = parseFloat(money);
+  //   const peopleNum = parseInt(people, 10);
+  //   if (moneyNum > 0 && peopleNum > 0) {
+  //     const share = moneyNum / peopleNum;
+  //     setMoneyShare(`หารคนละ ${share.toFixed(2)} บาท`);
+  //   } else {
+  //     setMoneyShare("กรุณากรอกจำนวนเงินและจำนวนคนที่มากกว่า0");
+  //   }
+  // };
+
+  const handleCalClick = () => {
+    if (money === "" || money <= "0") {
+      alert("กรุณากรอกจำนวนเงินที่มากกว่า0");
+      return;
+    }
+    if (people === "" || people <= "0") {
+      alert("กรุณากรอกจำนวนคนที่มากกว่า0");
+      return;
+    }
+
+    const moneyNum = parseFloat(money);
+    const peopleNum = parseInt(people, 10);
+    const share = moneyNum / peopleNum;
+    setMoneyShare(` ${share.toFixed(2)} `);
+  };
+
+  const handleClearClick = () => {
+    setMoney("");
+    setPeople("");
+    setMoneyShare("");
+  };
+
   return (
     <div>
       <div className="max-w-3xl w-full mt-5 mb-2 mx-auto bg-white transition-all duration-200 rounded-3xl shadow-2xl overflow-hidden p-8">
@@ -35,9 +73,11 @@ export default function MoneySharepage() {
                 ป้อนจำนวนเงิน
               </label>
               <input
+                value={money}
+                onChange={(e) => setMoney(e.target.value)}
                 type="number"
                 id="totalAmount"
-                placeholder="เช่น 1500"
+                placeholder="เช่น แมนยู5พัลลล"
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-400 focus:border-teal-400 transition-all duration-200"
               />
             </div>
@@ -51,6 +91,8 @@ export default function MoneySharepage() {
                 ป้อนจำนวนคน
               </label>
               <input
+                value={people}
+                onChange={(e) => setPeople(e.target.value)}
                 type="number"
                 id="numberOfPeople"
                 placeholder="เช่น 3"
@@ -61,14 +103,16 @@ export default function MoneySharepage() {
             {/* Buttons Section */}
             <div className="flex space-x-4">
               <button
+                onClick={handleCalClick}
                 id="calculateBtn"
-                className="w-full bg-teal-500 text-white font-bold py-3 px-4 rounded-xl hover:bg-teal-600 hover:outline-none focus:ring-4 hover:ring-teal-300 transition-all duration-200"
+                className="w-full cursor-pointer bg-teal-500 text-white font-bold py-3 px-4 rounded-xl hover:bg-teal-600 hover:outline-none focus:ring-4 hover:ring-teal-300 transition-all duration-200"
               >
                 คำนวณ
               </button>
               <button
+                onClick={handleClearClick}
                 id="clearBtn"
-                className="w-full bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-xl hover:bg-gray-300 hover:outline-none hover:ring-4 hover:ring-gray-300 transition-all duration-200"
+                className="w-full cursor-pointer bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-xl hover:bg-gray-300 hover:outline-none hover:ring-4 hover:ring-gray-300 transition-all duration-200"
               >
                 ล้างข้อมูล
               </button>
@@ -80,7 +124,9 @@ export default function MoneySharepage() {
             id="resultBox"
             className="mt-8 p-6 bg-teal-100 rounded-2xl text-center shadow-inner"
           >
-            <p className="text-lg text-gray-600">ผลลัพธ์จะแสดงที่นี่</p>
+            <p className="text-lg text-gray-600">
+              จำนวนเงินที่ต้องหาร: <span id="result">{moneyShare}</span> บาท
+            </p>
           </div>
         </main>
         <Link
