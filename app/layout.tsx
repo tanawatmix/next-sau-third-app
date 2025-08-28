@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "เว็บรวบรวมเครื่องมือคำนวณ",
   keywords: ["Calculator", "เครื่องมือคำนวณ", "BMI", "BMR", "money share"],
   icons: {
-    icon: "/next.svg",
+    icon: "./cat.ico",
   },
   authors: [{ name: "DTI-SAU Research Team", url: "https://sautechnology.com" }],
 };
