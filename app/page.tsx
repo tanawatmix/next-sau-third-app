@@ -6,7 +6,6 @@ import BMR from "./images/BMR.png";
 import Calcu from "./images/Ionic-Ionicons-Calculator-outline.512.png";
 import Money from "./images/Microsoft-Fluentui-Emoji-3d-Money-Mouth-Face-3d.512.png";
 import logo from "./images/Iconcreme-Halloween-Cat.ico";
-import { Yesteryear } from "next/font/google";
 
 export default function Home() {
   return (
@@ -16,9 +15,9 @@ export default function Home() {
         {/* Header Section */}
         <header className="text-center mb-10 md:mb-16">
           {/* Logo */}
-          <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-4 animate-bounce">
             <Image src={logo} alt="Calculator Icon" className="w-25 h-25" />
-          </div>
+            </div>
           <h1 className="text-4xl md:text-5xl font-bold text-cyan-600">
             Calculator Variety
           </h1>
