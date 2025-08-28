@@ -9,6 +9,7 @@ import logo from "./images/Iconcreme-Halloween-Cat.ico";
 
 export default function Home() {
   return (
+    
     <div>
       {/* Main Container */}
       <div className="container mx-auto px-4 py-8 md:py-12">
